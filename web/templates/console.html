@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block head %}
+<title>OpenTeacher | Console</title>
+{% endblock %}
+{% block navbar %}
+<a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+<span class="navbar-text">
+    Welcome
+</span>
+{% endblock %}
+{% block content %}
+<div class="container rectangle" style="margin-top: 35px;height:500px;">
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 style="padding-top: 20px;">Classes</h2>
+          </div>
+          <div class="col-md-auto">
+            <img src="https://raw.githubusercontent.com/prasannan-robots/openteacher/main/add.png" style="padding-top:20px;max-width:60px;height:60px;" class="ad" onclick="add_class()">
+          </div>
+        </div>
+      </div>
+      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+      
+      
+      <div id="classes" style="overflow-y: auto;max-height:400px;">
+        {% for note in user.classes %}
+      <div class="container" id="{{note.name}}">
+        <div class="row">
+          <div class="col">
+            <h2 style="padding-top: 20px;">{{note.name}}</h2>
+          </div>
+          <div class="col-md-auto">
+            <img src="https://raw.githubusercontent.com/prasannan-robots/openteacher/main/cancel.png" style="padding-top:20px;max-width:60px;height:60px;" class="ad" onclick="remove_class(this.id)" id="{{note.name}}">
+          </div>
+          <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:10px;"></div>
+      {% endfor %}
+      </div>
+</div>
+
+
+<!--div>Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div-->
+<!--div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var classes = [];
+    function removeItemAll(arr, value) {
+      var i = 0;
+      while (i < arr.length) {
+        if (arr[i] === value) {
+          arr.splice(i, 1);
+        } else {
+          ++i;
+        }
+      }
+      return arr;
+    }
+    function add_class(){
+      var classs = prompt("Enter new class name", "Class1");
+      if (classs != null) {
+        if (!(classes.includes(classs))){
+        document.getElementById("classes").innerHTML = document.getElementById("classes").innerHTML + '<div class="container" id="'+classs+'"><div class="row"><div class="col"><h2 style="padding-top: 20px;">'+classs+'</h2></div><div class="col-md-auto"><img src="https://raw.githubusercontent.com/prasannan-robots/openteacher/main/cancel.png" style="padding-top:20px;max-width:60px;height:60px;" class="ad" onclick="remove_class(this.id)" id="'+classs+'"></div><hr style="height:2px;border-width:0;color:gray;background-color:gray;margin-top:10px;"></div>';
+        //classes.push(classs); 
+        data_pusher(classs);
+        
+        }
+      }
+    }
+    function remove_class(id){
+      document.getElementById(id).innerHTML = "";
+      deleteclass(id);
+      //removeItemAll(classes, id);
+        }
+    function data_pusher(data){
+          $.post( "/datas", {
+            classes: JSON.stringify(data)
+          }); 
+          console.log("Data sent:"+data);
+        }
+    function deleteclass(noteId) {
+         fetch("/del-class", {
+         method: "POST",
+         body: JSON.stringify({ noteId: noteId }),
+         }).then((_res) => {
+         window.location.href = "/teacher-console";
+          });
+          console.log("DData sent:"+noteId);
+        }
+    function     
+</script>
+{% endblock %}

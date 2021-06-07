@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block head %}
+<title>OpenTeacher | HomePage</title>
+{% endblock %}
+{% block navbar %}
+<span class="navbar-text">
+    Teacher console | Already a user? <a href='/login'>Log in</a>
+  </span>
+{% endblock %}
+{% block content %}
+<div>
+    <div class="container" style="padding-top:50px;">
+        <div class="row">
+            
+          <div class="col" style="width: 900px;">
+            <div style='text-align:center;'>
+                <h2 style='font-family:sans-serif'>Automate teaching calculations</h2>
+                <div class='rectangle'>
+                    
+                 <form action="/signup" method="post" style="padding-top:30px;">
+                  <div class="form-floating mb-3" >
+                    <input type="text" class="form-control" placeholder="Name" id="Name" name="Name">
+                    <label for="floatingInput">Your Name</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" placeholder="Email" id="Email" name="Email">
+                    <label for="floatingInput">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" placeholder="Password" id="Password1" name="Password1">
+                    <label for="floatingPassword">New Password</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" placeholder="Password" id="Password2" name="Password2">
+                    <label for="floatingPassword">Retype Password</label>
+                  </div>
+                        <input type="submit" class="btn btn-secondary btn-lg" value="Continue >">
+                      
+                 </form>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-auto">
+            <img src="https://raw.githubusercontent.com/prasannan-robots/openteacher/main/calculations.jpg" style="max-width:400px;height: 400px;padding-top:50px;padding-left:50px;" id="images">
+          </div>
+          
+        </div>
+      </div> 
+      <div style="width:100%;height:200px;background-color:#4d4d4d;margin-top:100px;"></div>
+</div>
+<script>
+    
+    function detectMob() {
+        if ( ( window.innerWidth <= 1000 ) && ( window.innerHeight <= 1000 ) ) {
+            
+            var elem = document.getElementById("images");
+            elem.style = "padding-left:0px;max-width:100%;"
+            
+          }
+  
+        return ( ( window.innerWidth <= 1000 ) && ( window.innerHeight <= 1000 ) );
+      }
+    
+    
+    console.log(detectMob());
+</script>
+{% endblock %}

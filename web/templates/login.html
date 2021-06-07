@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block head %}
+<title>OpenTeacher | LoginPage</title>
+{% endblock %}
+{% block navbar %}
+<span class="navbar-text">
+    Teacher console | Welcome Back
+  </span>
+{% endblock %}
+{% block content %}
+<div>
+    <div class="container" style="padding-top:50px;">
+        <div class="row">
+            
+          <div class="col" style="width: 900px;">
+            <div style='text-align:center;'>
+               
+                <div class='rectangle'>
+                    <h5 style='padding-top:40px;padding-bottom:20px;'>Login to continue</h5>
+                    <form method="post">
+                      <div class="form-floating mb-3">
+                        <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+                        <label for="floatingInput">Email address</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                        <label for="floatingPassword">Password</label>
+                      </div>
+                            <input type="submit" class="btn btn-secondary btn-lg" value="Login >">
+                          
+                    </form>
+                  
+                </div>
+            </div>
+          </div>
+          <div class="col-md-auto">
+            <img src="https://raw.githubusercontent.com/prasannan-robots/openteacher/main/calculations.jpg" style="max-width:400px;height: 400px;padding-top:50px;padding-left:50px;" id="images">
+          </div>
+          
+        </div>
+      </div> 
+      
+</div>
+<script>
+    
+    function detectMob() {
+        if ( ( window.innerWidth <= 1000 ) && ( window.innerHeight <= 1000 ) ) {
+            
+            var elem = document.getElementById("images");
+            elem.style = "padding-left:0px;max-width:100%;"
+            
+          }
+  
+        return ( ( window.innerWidth <= 1000 ) && ( window.innerHeight <= 1000 ) );
+      }
+    
+    
+    console.log(detectMob());
+</script>
+{% endblock %}
